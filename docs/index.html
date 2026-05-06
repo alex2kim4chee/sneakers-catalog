@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог кроссовок — размеры и цены</title>
+  <meta name="description" content="Каталог кроссовок на русском языке: поиск, фильтры по бренду, размеру и цене, карточки с доступными размерами и ценами.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Каталог кроссовок — размеры и цены">
+  <meta property="og:description" content="Поиск и фильтры по бренду, размеру и цене. Карточки товаров с размерами US/RU/CM и быстрыми ссылками для заявки.">
+  <meta property="og:image" content="https://images.stockx.com/images/Nike-Dunk-Low-Panda-Black-White-Product.jpg">
+  <meta property="og:site_name" content="Sneakers Catalog">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Каталог кроссовок — размеры и цены">
+  <meta name="twitter:description" content="Поиск и фильтры по бренду, размеру и цене. Карточки товаров с размерами US/RU/CM.">
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="kicker">SNEAKERS CATALOG</p>
+    <h1>Каталог кроссовок</h1>
+    <p class="subtitle">Черно-белый интерфейс. Русский язык. Названия моделей сохранены как в источнике.</p>
+  </header>
+
+  <main class="layout">
+    <aside class="filters" aria-label="Фильтры">
+      <h2>Фильтры</h2>
+
+      <label class="field">
+        <span>Поиск</span>
+        <input id="search" type="search" placeholder="Название или бренд">
+      </label>
+
+      <label class="field">
+        <span>Бренд</span>
+        <select id="brand">
+          <option value="all">Все бренды</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Размер (фильтр)</span>
+        <input id="size" type="text" placeholder="Например: 9.5, 42, 27.5">
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span>Цена от ($)</span>
+          <input id="price-min" type="number" min="0" step="1" placeholder="0">
+        </label>
+
+        <label class="field">
+          <span>до ($)</span>
+          <input id="price-max" type="number" min="0" step="1" placeholder="1000">
+        </label>
+      </div>
+
+      <div class="field">
+        <span>Показывать размеры в</span>
+        <div class="unit-switch" id="unit-switch" role="tablist" aria-label="Единицы размера">
+          <button type="button" class="unit-btn is-active" data-unit="US">US</button>
+          <button type="button" class="unit-btn" data-unit="RU">RU</button>
+          <button type="button" class="unit-btn" data-unit="CM">CM</button>
+        </div>
+      </div>
+
+      <button id="reset" class="btn btn-muted" type="button">Сбросить фильтры</button>
+      <p id="stats" class="stats">Загрузка каталога…</p>
+    </aside>
+
+    <section>
+      <div id="catalog" class="grid" aria-live="polite"></div>
+      <p id="empty" class="empty hidden">Ничего не найдено. Измени фильтры или очисти поиск.</p>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
