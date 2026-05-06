@@ -219,6 +219,8 @@ select:focus {
   background: linear-gradient(180deg, #fdfdfd 0%, #ececec 100%);
   aspect-ratio: 1 / 1;
   padding: 0.8rem;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .card-image {
