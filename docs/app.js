@@ -23,6 +23,9 @@ const el = {
   stats: document.getElementById("stats"),
   reset: document.getElementById("reset"),
   empty: document.getElementById("empty"),
+  openContact: document.getElementById("open-contact"),
+  closeContact: document.getElementById("close-contact"),
+  contactDialog: document.getElementById("contact-dialog"),
 };
 
 function formatPrice(value) {
@@ -191,8 +194,36 @@ function bindEvents() {
   });
 }
 
+function bindContactDialog() {
+  if (!el.openContact || !el.contactDialog || !el.closeContact) {
+    return;
+  }
+
+  el.openContact.addEventListener("click", () => {
+    el.contactDialog.showModal();
+  });
+
+  el.closeContact.addEventListener("click", () => {
+    el.contactDialog.close();
+  });
+
+  el.contactDialog.addEventListener("click", (event) => {
+    const rect = el.contactDialog.getBoundingClientRect();
+    const clickedInside =
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom;
+
+    if (!clickedInside) {
+      el.contactDialog.close();
+    }
+  });
+}
+
 async function init() {
   bindEvents();
+  bindContactDialog();
 
   try {
     const response = await fetch(DATA_URL, { cache: "no-store" });

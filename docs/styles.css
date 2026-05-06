@@ -57,9 +57,9 @@ a {
   margin: 0 auto;
   height: 100%;
   display: grid;
-  grid-template-columns: 140px 1fr 140px;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  column-gap: 2.5vw;
+  column-gap: 2vw;
 }
 
 .brand-logo {
@@ -68,26 +68,21 @@ a {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   line-height: 1;
-}
-
-.top-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2.4vw;
-}
-
-.top-nav a,
 .top-contact {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 14px 0;
   position: relative;
+  font-family: var(--font-main);
 }
 
-.top-nav a::after,
 .top-contact::after {
   content: "";
   position: absolute;
@@ -99,13 +94,84 @@ a {
   transition: transform 0.45s ease;
 }
 
-.top-nav a:hover::after,
 .top-contact:hover::after {
   transform: translate3d(0, 0, 0);
 }
 
 .top-contact {
   justify-self: end;
+}
+
+/* Contact modal */
+.contact-dialog {
+  width: min(540px, calc(100% - 2rem));
+  border: 1px solid #111;
+  border-radius: 2px;
+  padding: 18px;
+  background: #fff;
+  color: #000;
+}
+
+.contact-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.contact-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.contact-dialog__header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.contact-dialog__close {
+  appearance: none;
+  border: 1px solid #111;
+  border-radius: 2px;
+  background: #fff;
+  color: #000;
+  width: 34px;
+  height: 34px;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.contact-dialog__subtitle {
+  margin: 10px 0 0;
+  color: #555;
+  font-size: 13px;
+  font-family: var(--font-ui);
+  line-height: 1.5;
+}
+
+.contact-links {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.contact-links a {
+  border: 1px solid #111;
+  border-radius: 2px;
+  padding: 11px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 13px;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.contact-links a:hover {
+  background: #000;
+  color: #fff;
 }
 
 /* Hero */
@@ -550,12 +616,8 @@ select:focus {
 /* Responsive */
 @media (max-width: 1180px) {
   .topbar-inner {
-    grid-template-columns: 130px 1fr auto;
+    grid-template-columns: 1fr auto;
     column-gap: 2vw;
-  }
-
-  .top-nav {
-    gap: 1.4vw;
   }
 
   .layout,
@@ -582,10 +644,6 @@ select:focus {
     grid-template-columns: 1fr auto;
   }
 
-  .top-nav {
-    display: none;
-  }
-
   .brand-logo {
     font-size: 20px;
   }
@@ -609,6 +667,10 @@ select:focus {
 
   .product-media {
     min-height: 300px;
+  }
+
+  .contact-dialog__header h2 {
+    font-size: 22px;
   }
 }
 

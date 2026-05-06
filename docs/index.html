@@ -12,7 +12,7 @@
   <meta property="og:title" content="Каталог кроссовок — размеры и цены">
   <meta property="og:description" content="Поиск и фильтры по бренду, размеру и цене. Карточки товаров с размерами US/RU/CM и быстрыми ссылками для заявки.">
   <meta property="og:image" content="https://images.stockx.com/images/Nike-Dunk-Low-Panda-Black-White-Product.jpg">
-  <meta property="og:site_name" content="Sneakers Catalog">
+  <meta property="og:site_name" content="SK SNEAKERS">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Каталог кроссовок — размеры и цены">
@@ -23,18 +23,28 @@
 <body class="catalog-page">
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand-logo" href="./index.html">NE SNEAKERS</a>
-      <nav class="top-nav" aria-label="Разделы каталога">
-        <a href="#catalog-section">Каталог</a>
-        <a href="#filters-section">Фильтры</a>
-        <a href="https://t.me/alex_kim_chi" target="_blank" rel="noopener">Telegram</a>
-      </nav>
-      <a class="top-contact" href="https://wa.me/16463226000" target="_blank" rel="noopener">Связь</a>
+      <a class="brand-logo" href="./index.html">SK SNEAKERS</a>
+      <button class="top-contact" id="open-contact" type="button">Связь</button>
     </div>
   </header>
 
+  <dialog id="contact-dialog" class="contact-dialog" aria-labelledby="contact-title">
+    <div class="contact-dialog__header">
+      <h2 id="contact-title">Каналы связи</h2>
+      <button id="close-contact" class="contact-dialog__close" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <p class="contact-dialog__subtitle">Выбери удобный канал. Текст заявки можно отправить после выбора модели и размера.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/16463226000" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://t.me/alex_kim_chi" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.instagram.com/djsashakim" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/share/1CyiHwJAJk/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://vk.ru/torrio30" target="_blank" rel="noopener">VK</a>
+    </div>
+  </dialog>
+
   <header class="hero">
-    <p class="kicker">SNEAKERS CATALOG</p>
+    <p class="kicker">SK SNEAKERS</p>
     <h1>Каталог кроссовок</h1>
     <p class="subtitle">Черно-белый интерфейс. Русский язык. Названия моделей сохранены как в источнике.</p>
   </header>
