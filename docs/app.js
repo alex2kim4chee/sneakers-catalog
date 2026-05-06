@@ -124,7 +124,7 @@ function renderCatalog() {
         <h3 class="card-name">${product.name}</h3>
         <p class="card-meta">Цена: <strong>${formatPrice(product.priceMin)}</strong> — ${formatPrice(product.priceMax)}</p>
         <p class="card-sizes">Размеры (${state.unit}): ${sizesPreview}${product.offers.length > 4 ? "…" : ""}</p>
-        <a class="btn btn-primary card-link" href="./p/${product.slug}.html">Открыть карточку</a>
+        <a class="btn btn-primary card-link" href="./p/${product.slug}.html">ВЫБРАТЬ РАЗМЕР</a>
       </div>
     `;
 
