@@ -20,15 +20,27 @@
 
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body class="catalog-page">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand-logo" href="./index.html">NE SNEAKERS</a>
+      <nav class="top-nav" aria-label="Разделы каталога">
+        <a href="#catalog-section">Каталог</a>
+        <a href="#filters-section">Фильтры</a>
+        <a href="https://t.me/alex_kim_chi" target="_blank" rel="noopener">Telegram</a>
+      </nav>
+      <a class="top-contact" href="https://wa.me/16463226000" target="_blank" rel="noopener">Связь</a>
+    </div>
+  </header>
+
   <header class="hero">
     <p class="kicker">SNEAKERS CATALOG</p>
     <h1>Каталог кроссовок</h1>
     <p class="subtitle">Черно-белый интерфейс. Русский язык. Названия моделей сохранены как в источнике.</p>
   </header>
 
-  <main class="layout">
-    <aside class="filters" aria-label="Фильтры">
+  <main class="layout" id="catalog-section">
+    <aside class="filters" id="filters-section" aria-label="Фильтры">
       <h2>Фильтры</h2>
 
       <label class="field">
