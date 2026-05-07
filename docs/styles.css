@@ -607,11 +607,54 @@ select:focus {
   gap: 8px;
 }
 
-.note {
-  margin-top: 12px;
-  color: #666;
+.policy-block {
+  margin-top: 16px;
+  border: 1px solid #d8d8d8;
+  border-radius: 2px;
+  padding: 12px;
+  background: #fff;
+}
+
+.policy-title {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.policy-list {
+  display: grid;
+  gap: 10px;
+}
+
+.policy-item {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 9px;
+  align-items: start;
+}
+
+.policy-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9d9d9;
+  border-radius: 999px;
+}
+
+.policy-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.policy-item p {
+  margin: 0;
+  color: #4f4f4f;
   font-size: 12px;
-  line-height: 1.45;
+  line-height: 1.5;
   font-family: var(--font-ui);
 }
 
@@ -717,5 +760,19 @@ select:focus {
 
   .product-name {
     font-size: 34px;
+  }
+
+  .policy-item {
+    grid-template-columns: 22px 1fr;
+    gap: 8px;
+  }
+
+  .policy-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .policy-item p {
+    font-size: 11px;
   }
 }
