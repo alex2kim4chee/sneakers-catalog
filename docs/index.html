@@ -18,6 +18,7 @@
   <meta name="twitter:title" content="Каталог кроссовок — размеры и цены">
   <meta name="twitter:description" content="Поиск и фильтры по бренду, размеру и цене. Карточки товаров с размерами US/RU/CM.">
 
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="catalog-page">
@@ -81,6 +82,15 @@
           <input id="price-max" type="number" min="0" step="1" placeholder="1000">
         </label>
       </div>
+
+      <label class="field">
+        <span>Сортировка</span>
+        <select id="sort">
+          <option value="default">По алфавиту</option>
+          <option value="price-asc">Сначала дешевле</option>
+          <option value="price-desc">Сначала дороже</option>
+        </select>
+      </label>
 
       <div class="field">
         <span>Показывать размеры в</span>

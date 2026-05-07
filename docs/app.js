@@ -10,6 +10,7 @@ const state = {
   size: "",
   priceMin: "",
   priceMax: "",
+  sort: "default",
 };
 
 const el = {
@@ -18,6 +19,7 @@ const el = {
   size: document.getElementById("size"),
   priceMin: document.getElementById("price-min"),
   priceMax: document.getElementById("price-max"),
+  sort: document.getElementById("sort"),
   unitSwitch: document.getElementById("unit-switch"),
   catalog: document.getElementById("catalog"),
   stats: document.getElementById("stats"),
@@ -90,8 +92,25 @@ function productMatches(product) {
   return true;
 }
 
+function sortProducts(products) {
+  const sorted = [...products];
+
+  if (state.sort === "price-asc") {
+    sorted.sort((a, b) => a.priceMin - b.priceMin || a.priceMax - b.priceMax);
+    return sorted;
+  }
+
+  if (state.sort === "price-desc") {
+    sorted.sort((a, b) => b.priceMin - a.priceMin || b.priceMax - a.priceMax);
+    return sorted;
+  }
+
+  sorted.sort((a, b) => a.name.localeCompare(b.name, "ru"));
+  return sorted;
+}
+
 function renderCatalog() {
-  const filtered = state.products.filter(productMatches);
+  const filtered = sortProducts(state.products.filter(productMatches));
   el.catalog.innerHTML = "";
 
   el.stats.textContent = `Показано ${filtered.length} из ${state.products.length}`;
@@ -168,6 +187,11 @@ function bindEvents() {
     renderCatalog();
   });
 
+  el.sort.addEventListener("change", (event) => {
+    state.sort = event.target.value;
+    renderCatalog();
+  });
+
   el.unitSwitch.addEventListener("click", (event) => {
     const target = event.target.closest("button[data-unit]");
     if (!target) {
@@ -182,6 +206,7 @@ function bindEvents() {
     state.size = "";
     state.priceMin = "";
     state.priceMax = "";
+    state.sort = "default";
     state.unit = "US";
 
     el.search.value = "";
@@ -189,6 +214,7 @@ function bindEvents() {
     el.size.value = "";
     el.priceMin.value = "";
     el.priceMax.value = "";
+    el.sort.value = "default";
 
     setUnit("US");
   });
