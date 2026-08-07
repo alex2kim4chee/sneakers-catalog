@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # Экшены в воркфлоу устаревают молча: сначала GitHub пишет предупреждение в лог
+  # (например, про Node 20), а потом старые версии просто перестают запускаться.
+  # Dependabot открывает PR с обновлением, чтобы это не всплывало внезапно.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
