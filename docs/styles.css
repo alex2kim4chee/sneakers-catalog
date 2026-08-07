@@ -600,6 +600,11 @@ select:focus {
   margin: 4px 0;
 }
 
+.fx-note {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .contacts {
   margin-top: 14px;
   display: flex;

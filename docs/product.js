@@ -2,6 +2,7 @@ import { convertSize } from "./size-utils.js";
 
 const TELEGRAM_USERNAME = "alex_kim_chi";
 const WHATSAPP_PHONE = "16463226000";
+const FX_URL = "../fx.json";
 
 const dataNode = document.getElementById("product-data");
 const product = JSON.parse(dataNode.textContent || "{}");
@@ -9,6 +10,8 @@ const product = JSON.parse(dataNode.textContent || "{}");
 const state = {
   unit: "US",
   selected: null,
+  fx: null,
+  fxStatus: "loading",
 };
 
 const el = {
@@ -16,6 +19,8 @@ const el = {
   sizesList: document.getElementById("sizes-list"),
   selectionSize: document.getElementById("selection-size"),
   selectionPrice: document.getElementById("selection-price"),
+  selectionPriceRub: document.getElementById("selection-price-rub"),
+  fxNote: document.getElementById("fx-note"),
   ctaTelegram: document.getElementById("cta-telegram"),
   ctaWhatsapp: document.getElementById("cta-whatsapp"),
 };
@@ -26,6 +31,39 @@ function formatPrice(value, currency = "USD") {
     return `$${rounded}`;
   }
   return `${rounded} ${currency}`;
+}
+
+function formatRub(value) {
+  return `${Math.round(value).toLocaleString("ru-RU")} ₽`;
+}
+
+function formatRate(rate) {
+  return rate.toLocaleString("ru-RU", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+function formatRateDate(isoDate) {
+  const parts = String(isoDate || "").split("-");
+  if (parts.length !== 3) {
+    return "";
+  }
+  return `${parts[2]}.${parts[1]}.${parts[0]}`;
+}
+
+// Курс применим только к долларовым ценам — другую валюту молча пересчитывать нельзя.
+function rubPrice(offer) {
+  if (!state.fx || !offer || offer.currency !== "USD") {
+    return null;
+  }
+  return offer.price * state.fx.rate;
+}
+
+function describeRate() {
+  const date = formatRateDate(state.fx.rateDate);
+  const suffix = date ? ` на ${date}` : "";
+  return `по курсу ЦБ ${formatRate(state.fx.rate)} ₽/$${suffix}`;
 }
 
 function getCurrentPageUrl() {
@@ -40,13 +78,21 @@ function buildInquiryText() {
   const displaySize = convertSize(state.selected.size, state.unit);
   const price = formatPrice(state.selected.price, state.selected.currency);
 
-  return [
+  const lines = [
     "Здравствуйте! Хочу заказать:",
     `${product.name}`,
     `Размер: ${displaySize} (${state.unit})`,
     `Цена: ${price}`,
-    `Ссылка: ${getCurrentPageUrl()}`,
-  ].join("\n");
+  ];
+
+  // Курс фиксируется в тексте заявки: к моменту ответа он уже может измениться.
+  const rub = rubPrice(state.selected);
+  if (rub !== null) {
+    lines.push(`Цена в рублях: ${formatRub(rub)} (${describeRate()})`);
+  }
+
+  lines.push(`Ссылка: ${getCurrentPageUrl()}`);
+  return lines.join("\n");
 }
 
 function updateContactLinks() {
@@ -57,10 +103,30 @@ function updateContactLinks() {
   el.ctaWhatsapp.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encoded}`;
 }
 
+function updateRubView() {
+  const rub = rubPrice(state.selected);
+
+  if (rub !== null) {
+    el.selectionPriceRub.textContent = formatRub(rub);
+    el.fxNote.textContent = `${describeRate()}, ориентировочно`;
+    return;
+  }
+
+  el.selectionPriceRub.textContent = "—";
+  if (state.fxStatus === "loading") {
+    el.fxNote.textContent = "курс загружается…";
+  } else if (state.fxStatus === "failed") {
+    el.fxNote.textContent = "курс недоступен";
+  } else {
+    el.fxNote.textContent = "";
+  }
+}
+
 function updateSelectionView() {
   if (!state.selected) {
     el.selectionSize.textContent = "—";
     el.selectionPrice.textContent = "—";
+    updateRubView();
     updateContactLinks();
     return;
   }
@@ -72,6 +138,7 @@ function updateSelectionView() {
     state.selected.currency
   );
 
+  updateRubView();
   updateContactLinks();
 }
 
@@ -149,11 +216,39 @@ function bindEvents() {
   });
 }
 
+// `fx.json` обновляется отдельным ежедневным воркфлоу, поэтому лежит на своём же
+// домене: сторонний API в момент открытия страницы не дёргается.
+async function loadFxRate() {
+  try {
+    const response = await fetch(FX_URL, { cache: "no-cache" });
+    if (!response.ok) {
+      throw new Error(`Не удалось загрузить курс: ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const rate = Number(payload.rate);
+    if (!Number.isFinite(rate) || rate <= 0) {
+      throw new Error(`Некорректный курс в ${FX_URL}: ${payload.rate}`);
+    }
+
+    state.fx = { rate, rateDate: String(payload.rateDate || "") };
+    state.fxStatus = "ready";
+  } catch (error) {
+    state.fx = null;
+    state.fxStatus = "failed";
+    console.error(error);
+  }
+
+  updateSelectionView();
+}
+
 function init() {
   bindEvents();
   state.selected = pickDefaultSelection();
   renderSizes();
   updateSelectionView();
+  // Без await: карточка отрисовывается сразу, рублёвая строка догружается следом.
+  loadFxRate();
 }
 
 init();
