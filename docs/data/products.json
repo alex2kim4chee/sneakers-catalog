@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-05-08T18:44:54.446778+00:00",
+  "generatedAt": "2026-08-07T22:10:01.539823+00:00",
   "count": 1040,
   "products": [
     {
       "slug": "a-bathing-ape-bape-sk8-sta-triple-white-patent-leather",
       "path": "/a-bathing-ape-bape-sk8-sta-triple-white-patent-leather",
       "name": "A Bathing Ape Bape SK8 Sta Triple White Patent Leather Sta Logo",
-      "brand": "A",
+      "brand": "A Bathing Ape",
       "imageUrl": "images/a-bathing-ape-bape-sk8-sta-triple-white-patent-leather-product-2aac997773c2.jpg",
       "offers": [
         {
@@ -62,7 +62,7 @@
       "slug": "a-bathing-ape-bape-sta-snake-skin-black",
       "path": "/a-bathing-ape-bape-sta-snake-skin-black",
       "name": "A Bathing Ape Bape Sta Snake Skin Black",
-      "brand": "A",
+      "brand": "A Bathing Ape",
       "imageUrl": "images/a-bathing-ape-bape-sta-snake-skin-black-product-d1b42b60069f.jpg",
       "offers": [
         {
@@ -128,7 +128,7 @@
       "slug": "a-bathing-ape-shark-sta-ex-miyashita-park-20th-anniversary-of-the-shark-hoodie",
       "path": "/a-bathing-ape-shark-sta-ex-miyashita-park-20th-anniversary-of-the-shark-hoodie",
       "name": "A Bathing Ape Shark Sta Ex Miyashita Park 20th Anniversary of the Shark Hoodie",
-      "brand": "A",
+      "brand": "A Bathing Ape",
       "imageUrl": "images/a-bathing-ape-shark-sta-ex-miyashita-park-20th-anniversary-of-the-shark-hoodie-9bda0b8f4265.jpg",
       "offers": [
         {
@@ -169,7 +169,7 @@
       "slug": "a-bathing-ape-shark-sta-m2-beige",
       "path": "/a-bathing-ape-shark-sta-m2-beige",
       "name": "A Bathing Ape Shark Sta M2 Beige",
-      "brand": "A",
+      "brand": "A Bathing Ape",
       "imageUrl": "images/a-bathing-ape-shark-sta-m2-beige-54969436963d.jpg",
       "offers": [
         {
@@ -220,7 +220,7 @@
       "slug": "a-bathing-ape-shark-sta-m2-olive-drab",
       "path": "/a-bathing-ape-shark-sta-m2-olive-drab",
       "name": "A Bathing Ape Shark Sta M2 Olive Drab",
-      "brand": "A",
+      "brand": "A Bathing Ape",
       "imageUrl": "images/a-bathing-ape-shark-sta-m2-olive-drab-4fd35158dc03.jpg",
       "offers": [
         {
@@ -266,7 +266,7 @@
       "slug": "a-bathing-ape-shark-sta-m2-white",
       "path": "/a-bathing-ape-shark-sta-m2-white",
       "name": "A Bathing Ape Shark Sta M2 White",
-      "brand": "A",
+      "brand": "A Bathing Ape",
       "imageUrl": "images/a-bathing-ape-shark-sta-m2-white-product-e558df5080e0.jpg",
       "offers": [
         {
@@ -12939,7 +12939,7 @@
       "slug": "alexander-mcqueen-oversized-ivory-black",
       "path": "/alexander-mcqueen-oversized-ivory-black",
       "name": "Alexander McQueen Oversized White Black",
-      "brand": "Alexander",
+      "brand": "Alexander McQueen",
       "imageUrl": "images/alexander-mcqueen-oversized-ivory-black-product-385a257bd3b9.jpg",
       "offers": [
         {
@@ -17257,7 +17257,7 @@
       "slug": "adidas-campus-bad-bunny-the-last-campus",
       "path": "/adidas-campus-bad-bunny-the-last-campus",
       "name": "Bad Bunny The Last Campus",
-      "brand": "Bad",
+      "brand": "adidas",
       "imageUrl": "images/adidas-campus-light-bad-bunny-deep-brown-product-1c6545c8e2a0.jpg",
       "offers": [
         {
@@ -17975,7 +17975,7 @@
       "slug": "bravest-studios-kross-kountry-runner-triple-black",
       "path": "/bravest-studios-kross-kountry-runner-triple-black",
       "name": "Bravest Studios Kross Kountry Runner Triple Black",
-      "brand": "Bravest",
+      "brand": "Bravest Studios",
       "imageUrl": "images/bravest-studios-kross-kountry-runner-triple-black-product-b6316c8bfd10.jpg",
       "offers": [
         {
@@ -75359,7 +75359,7 @@
       "slug": "nike-air-zoom-gt-cut-3-air-jordan-poole-milk-and-cookies",
       "path": "/nike-air-zoom-gt-cut-3-air-jordan-poole-milk-and-cookies",
       "name": "Nike Air Zoom GT Cut 3 Jordan Poole Milk and Cookies",
-      "brand": "Jordan",
+      "brand": "Nike",
       "imageUrl": "images/nike-air-zoom-gt-cut-3-air-jordan-poole-milk-and-cookies-product-a569abd1b73a.jpg",
       "offers": [
         {
@@ -93898,7 +93898,7 @@
       "slug": "nike-sb-dunk-low-dashawn-jordan-copperhead",
       "path": "/nike-sb-dunk-low-dashawn-jordan-copperhead",
       "name": "Nike SB Dunk Low Dashawn Jordan Copperhead",
-      "brand": "Jordan",
+      "brand": "Nike",
       "imageUrl": "images/nike-sb-dunk-low-dashawn-air-jordan-copperhead-product-b68ef359e4d9.jpg",
       "offers": [
         {
@@ -101129,7 +101129,7 @@
       "slug": "onitsuka-tiger-mexico-66-beige-grass-green",
       "path": "/onitsuka-tiger-mexico-66-beige-grass-green",
       "name": "Onitsuka Tiger Mexico 66 Beige Grass Green",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-beige-grass-green-product-6aa5c7d216b8.jpg",
       "offers": [
         {
@@ -101240,7 +101240,7 @@
       "slug": "onitsuka-tiger-mexico-66-birch-peacoat",
       "path": "/onitsuka-tiger-mexico-66-birch-peacoat",
       "name": "Onitsuka Tiger Mexico 66 Birch Peacoat",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-birch-peacoat-product-df5f825b2f84.jpg",
       "offers": [
         {
@@ -101351,7 +101351,7 @@
       "slug": "onitsuka-tiger-mexico-66-black-white",
       "path": "/onitsuka-tiger-mexico-66-black-white",
       "name": "Onitsuka Tiger Mexico 66 Black White",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-black-white-product-0698d0449626.jpg",
       "offers": [
         {
@@ -101462,7 +101462,7 @@
       "slug": "onitsuka-tiger-mexico-66-kill-bill-2022",
       "path": "/onitsuka-tiger-mexico-66-kill-bill-2022",
       "name": "Onitsuka Tiger Mexico 66 Kill Bill",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-kill-bill-2022-product-b6aa6f13ebd4.jpg",
       "offers": [
         {
@@ -101573,7 +101573,7 @@
       "slug": "onitsuka-tiger-mexico-66-sd-kill-bill-yellow-midsole-2024",
       "path": "/onitsuka-tiger-mexico-66-sd-kill-bill-yellow-midsole-2024",
       "name": "Onitsuka Tiger Mexico 66 SD Kill Bill (Yellow Midsole) (2024)",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-sd-kill-bill-yellow-midsole-2024-product-1df0b0b5d3f2.jpg",
       "offers": [
         {
@@ -101679,7 +101679,7 @@
       "slug": "onitsuka-tiger-mexico-66-silver-off-white",
       "path": "/onitsuka-tiger-mexico-66-silver-off-white",
       "name": "Onitsuka Tiger Mexico 66 Silver Off White",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-silver-off-white-product-34c6800c585e.jpg",
       "offers": [
         {
@@ -101785,7 +101785,7 @@
       "slug": "onitsuka-tiger-mexico-66-tgrs-black-cream-womens",
       "path": "/onitsuka-tiger-mexico-66-tgrs-black-cream-womens",
       "name": "Onitsuka Tiger Mexico 66 TGRS Black Cream (Women's)",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-tgrs-black-cream-womens-product-7864257ea190.jpg",
       "offers": [
         {
@@ -101871,7 +101871,7 @@
       "slug": "onitsuka-tiger-mexico-66-vintage-birch-black",
       "path": "/onitsuka-tiger-mexico-66-vintage-birch-black",
       "name": "Onitsuka Tiger Mexico 66 Vintage Birch Black",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-vintage-birch-black-product-fd81d9d6ba7e.jpg",
       "offers": [
         {
@@ -101972,7 +101972,7 @@
       "slug": "onitsuka-tiger-mexico-66-sd-white-black",
       "path": "/onitsuka-tiger-mexico-66-sd-white-black",
       "name": "Onitsuka Tiger Mexico 66 White Black",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-sd-white-black-product-1039da5fab58.jpg",
       "offers": [
         {
@@ -102083,7 +102083,7 @@
       "slug": "onitsuka-tiger-mexico-66-white-blue-red",
       "path": "/onitsuka-tiger-mexico-66-white-blue-red",
       "name": "Onitsuka Tiger Mexico 66 White Blue Red",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-mexico-66-white-blue-red-product-026b77bab5c8.jpg",
       "offers": [
         {
@@ -102194,7 +102194,7 @@
       "slug": "onitsuka-tiger-tokuten-white-black-gold",
       "path": "/onitsuka-tiger-tokuten-white-black-gold",
       "name": "Onitsuka Tiger Tokuten White Black Gold",
-      "brand": "Onitsuka",
+      "brand": "Onitsuka Tiger",
       "imageUrl": "images/onitsuka-tiger-tokuten-white-black-gold-product-e3fcf84796a4.jpg",
       "offers": [
         {
@@ -105115,7 +105115,7 @@
       "slug": "under-armour-ua-sola-white-metallic-silver",
       "path": "/under-armour-ua-sola-white-metallic-silver",
       "name": "Under Armour UA Sola White Metallic Silver",
-      "brand": "Under",
+      "brand": "Under Armour",
       "imageUrl": "images/under-armour-ua-sola-white-metallic-silver-2f36187755c8.jpg",
       "offers": [
         {
