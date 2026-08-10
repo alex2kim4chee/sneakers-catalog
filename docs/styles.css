@@ -760,3 +760,28 @@ select:focus {
     font-size: 11px;
   }
 }
+
+.load-more {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: 1px solid #d5d5d5;
+  border-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+  padding: 12px;
+  margin: 18px 0 6px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.load-more:hover {
+  border-color: #000;
+}
+
+.load-more[hidden] {
+  display: none;
+}

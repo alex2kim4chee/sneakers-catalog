@@ -1,6 +1,9 @@
 import { convertSize, normalizeForSearch } from "./size-utils.js";
 
 const DATA_URL = "./data/products.json";
+// Размер порции подобран так, чтобы первый экран заполнялся с запасом
+// на широком мониторе, но страница не вырастала на сотни экранов.
+const PAGE_SIZE = 60;
 
 const state = {
   products: [],
@@ -11,6 +14,8 @@ const state = {
   priceMin: "",
   priceMax: "",
   sort: "default",
+  filtered: [],
+  rendered: 0,
 };
 
 const el = {
@@ -28,7 +33,48 @@ const el = {
   openContact: document.getElementById("open-contact"),
   closeContact: document.getElementById("close-contact"),
   contactDialog: document.getElementById("contact-dialog"),
+  sentinel: null,
 };
+
+// rootMargin даёт фору: следующая порция готовится до того, как покупатель
+// доскроллит до конца, поэтому подгрузка не бросается в глаза.
+const observer = new IntersectionObserver(
+  (entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      appendBatch();
+    }
+  },
+  { rootMargin: "600px 0px" }
+);
+
+function createSentinel() {
+  const node = document.createElement("button");
+  node.type = "button";
+  node.className = "load-more";
+  node.hidden = true;
+  // Клик — запасной путь: если наблюдатель почему-то не сработает, покупатель
+  // всё равно сможет открыть следующую порцию.
+  node.addEventListener("click", () => appendBatch());
+  el.catalog.insertAdjacentElement("afterend", node);
+  return node;
+}
+
+// Наблюдатель — основной механизм, но полагаться только на него нельзя:
+// в части окружений он не срабатывает. Прокрутка страхует его напрямую.
+function sentinelIsNear() {
+  if (!el.sentinel || el.sentinel.hidden) {
+    return false;
+  }
+  return el.sentinel.getBoundingClientRect().top <= window.innerHeight + 600;
+}
+
+function maybeLoadMore() {
+  let guard = 0;
+  while (sentinelIsNear() && state.rendered < state.filtered.length && guard < 5) {
+    appendBatch();
+    guard += 1;
+  }
+}
 
 function formatPrice(value) {
   return `$${Math.round(value)}`;
@@ -109,48 +155,78 @@ function sortProducts(products) {
   return sorted;
 }
 
+function buildCard(product, indexInBatch) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.style.animationDelay = `${Math.min(indexInBatch * 16, 220)}ms`;
+
+  const sizesPreview = product.offers
+    .slice(0, 4)
+    .map((o) => convertSize(o.size, state.unit))
+    .join(", ");
+
+  card.innerHTML = `
+    <div class="card-image-wrap">
+      <img class="card-image" src="${product.imageUrl}" alt="${product.name}" loading="lazy">
+    </div>
+    <div class="card-body">
+      <p class="card-brand">${product.brand}</p>
+      <h3 class="card-name">${product.name}</h3>
+      <p class="card-meta">Цена: <strong>${formatPrice(product.priceMin)}</strong> — ${formatPrice(product.priceMax)}</p>
+      <p class="card-sizes">Размеры (${state.unit}): ${sizesPreview}${product.offers.length > 4 ? "…" : ""}</p>
+      <a class="btn btn-primary card-link" href="./p/${product.slug}.html">ВЫБРАТЬ РАЗМЕР</a>
+    </div>
+  `;
+
+  return card;
+}
+
+// Рисуем каталог порциями. Раньше в DOM попадали все карточки сразу: страница
+// вырастала на сотни экранов, и браузер начинал грузить сотни картинок далеко
+// за пределами вьюпорта, хотя `loading="lazy"` формально стоял.
+function appendBatch() {
+  if (state.rendered >= state.filtered.length) {
+    return;
+  }
+
+  const batch = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
+  const frag = document.createDocumentFragment();
+  batch.forEach((product, index) => frag.appendChild(buildCard(product, index)));
+
+  el.catalog.appendChild(frag);
+  state.rendered += batch.length;
+  updateSentinel();
+}
+
+function updateSentinel() {
+  const more = state.filtered.length - state.rendered;
+  if (more <= 0) {
+    el.sentinel.hidden = true;
+    observer.unobserve(el.sentinel);
+    return;
+  }
+
+  el.sentinel.hidden = false;
+  el.sentinel.textContent = `Показать ещё — осталось ${more}`;
+  observer.observe(el.sentinel);
+}
+
 function renderCatalog() {
-  const filtered = sortProducts(state.products.filter(productMatches));
+  state.filtered = sortProducts(state.products.filter(productMatches));
+  state.rendered = 0;
   el.catalog.innerHTML = "";
 
-  el.stats.textContent = `Показано ${filtered.length} из ${state.products.length}`;
+  el.stats.textContent = `Показано ${state.filtered.length} из ${state.products.length}`;
 
-  if (filtered.length === 0) {
+  if (state.filtered.length === 0) {
     el.empty.classList.remove("hidden");
+    el.sentinel.hidden = true;
     return;
   }
 
   el.empty.classList.add("hidden");
-
-  const frag = document.createDocumentFragment();
-
-  filtered.forEach((product, index) => {
-    const card = document.createElement("article");
-    card.className = "card";
-    card.style.animationDelay = `${Math.min(index * 16, 220)}ms`;
-
-    const sizesPreview = product.offers
-      .slice(0, 4)
-      .map((o) => convertSize(o.size, state.unit))
-      .join(", ");
-
-    card.innerHTML = `
-      <div class="card-image-wrap">
-        <img class="card-image" src="${product.imageUrl}" alt="${product.name}" loading="lazy">
-      </div>
-      <div class="card-body">
-        <p class="card-brand">${product.brand}</p>
-        <h3 class="card-name">${product.name}</h3>
-        <p class="card-meta">Цена: <strong>${formatPrice(product.priceMin)}</strong> — ${formatPrice(product.priceMax)}</p>
-        <p class="card-sizes">Размеры (${state.unit}): ${sizesPreview}${product.offers.length > 4 ? "…" : ""}</p>
-        <a class="btn btn-primary card-link" href="./p/${product.slug}.html">ВЫБРАТЬ РАЗМЕР</a>
-      </div>
-    `;
-
-    frag.appendChild(card);
-  });
-
-  el.catalog.appendChild(frag);
+  appendBatch();
+  maybeLoadMore();
 }
 
 function setUnit(unit) {
@@ -248,6 +324,9 @@ function bindContactDialog() {
 }
 
 async function init() {
+  el.sentinel = createSentinel();
+  window.addEventListener("scroll", maybeLoadMore, { passive: true });
+  window.addEventListener("resize", maybeLoadMore, { passive: true });
   bindEvents();
   bindContactDialog();
 
