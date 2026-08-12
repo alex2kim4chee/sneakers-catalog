@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Калькулятор доставки — SK SNEAKERS</title>
+  <meta name="description" content="Рассчитайте стоимость доставки из США по России: выберите город и вес посылки. Тарифы СДЭК, доставка до двери или до пункта выдачи.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://kicks.usourcedirect.com/shipping.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;family=Roboto+Condensed:wght@300;400;500;700&amp;display=swap">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;family=Roboto+Condensed:wght@300;400;500;700&amp;display=swap"></noscript>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="catalog-page">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand-logo" href="./index.html">SK SNEAKERS</a>
+      <a class="top-contact" href="./index.html">В каталог</a>
+    </div>
+  </header>
+
+  <header class="hero">
+    <p class="kicker">SK SNEAKERS</p>
+    <h1>Калькулятор доставки</h1>
+    <p class="subtitle">Укажите город и вес посылки — покажем стоимость доставки из США.</p>
+  </header>
+
+  <main class="shipping-layout">
+    <section class="shipping-form">
+      <label class="field">
+        <span>Город</span>
+        <input id="city" type="text" autocomplete="off" placeholder="Начните вводить название">
+      </label>
+      <div id="suggestions" class="suggestions" hidden></div>
+
+      <label class="field">
+        <span>Вес посылки, кг</span>
+        <input id="weight" type="number" min="0.1" step="0.1" value="1">
+      </label>
+
+      <div class="field">
+        <span>Способ доставки</span>
+        <div class="unit-switch" id="mode-switch" role="tablist" aria-label="Способ доставки">
+          <button type="button" class="unit-btn is-active" data-mode="door">До двери</button>
+          <button type="button" class="unit-btn" data-mode="pickup">До пункта выдачи</button>
+        </div>
+      </div>
+
+      <p id="status" class="stats">Загрузка тарифов…</p>
+    </section>
+
+    <section class="shipping-result">
+      <div id="result" class="result-box" aria-live="polite"></div>
+
+      <section class="policy-block" aria-label="Как считается доставка">
+        <h2 class="policy-title">Как считается</h2>
+        <div class="policy-list">
+          <article class="policy-item">
+            <p>Тарифы СДЭК (авиа) по России. Стоимость зависит от зоны города и веса посылки.</p>
+          </article>
+          <article class="policy-item">
+            <p>Вес округляется вверх до ближайшей ступени тарифа: например, 0,35 кг считается как 0,4 кг.</p>
+          </article>
+          <article class="policy-item">
+            <p>Указана стоимость доставки по России. Стоимость товара и пересылка из США считаются отдельно.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="contacts">
+        <a class="btn btn-primary" href="https://t.me/alex_kim_chi" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn" href="https://wa.me/16463226000" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./shipping.js"></script>
+</body>
+</html>

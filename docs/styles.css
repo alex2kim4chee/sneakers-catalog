@@ -55,7 +55,7 @@ a {
   margin: 0 auto;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
   column-gap: 2vw;
 }
@@ -782,4 +782,105 @@ select:focus {
 
 .load-more[hidden] {
   display: none;
+}
+
+/* Калькулятор доставки */
+.shipping-layout {
+  width: var(--content-width);
+  margin: 0 auto;
+  padding: 34px 0 64px;
+  display: grid;
+  grid-template-columns: minmax(272px, 380px) 1fr;
+  column-gap: 3.8vw;
+  align-items: start;
+}
+
+.shipping-form {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 16px;
+  position: relative;
+}
+
+.suggestions {
+  margin: -8px 0 13px;
+  border: 1px solid #d5d5d5;
+  border-radius: 2px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.suggestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  text-align: left;
+  padding: 9px 11px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+}
+
+.suggestion:last-child { border-bottom: 0; }
+.suggestion:hover { background: #f5f5f5; }
+.suggestion-city { font-size: 14px; }
+.suggestion-region { font-size: 11px; color: var(--muted); text-align: right; }
+
+.result-box {
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 20px;
+  min-height: 120px;
+}
+
+.result-sum {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.result-meta {
+  margin: 10px 0 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.result-note {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.result-message {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.result-message--blocked { color: #000; }
+
+.shipping-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  border-bottom: 1px solid currentColor;
+}
+
+@media (max-width: 900px) {
+  .shipping-layout { grid-template-columns: 1fr; row-gap: 22px; }
 }
