@@ -648,8 +648,10 @@ select:focus {
 
 /* Responsive */
 @media (max-width: 1180px) {
+  /* Элементов в шапке три: логотип, «Доставка», «Связь». Двухколоночная
+     сетка роняла третий на вторую строку, и он вылезал за пределы шапки. */
   .topbar-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
     column-gap: 2vw;
   }
 
@@ -674,11 +676,18 @@ select:focus {
   }
 
   .topbar-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 14px;
   }
 
   .brand-logo {
     font-size: 20px;
+  }
+
+  .top-contact {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    padding: 10px 0;
   }
 
   .catalog-page .hero {
@@ -883,4 +892,19 @@ select:focus {
 
 @media (max-width: 900px) {
   .shipping-layout { grid-template-columns: 1fr; row-gap: 22px; }
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+
+  .topbar-inner {
+    column-gap: 10px;
+  }
+
+  .top-contact {
+    font-size: 11px;
+  }
 }
