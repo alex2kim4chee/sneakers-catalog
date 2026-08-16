@@ -1,7 +1,9 @@
 import { convertSize } from "./size-utils.js";
 
-const TELEGRAM_USERNAME = "alex_kim_chi";
-const WHATSAPP_PHONE = "16463226000";
+// Заказ оформляется через бота, а не в личном чате: он сам знает цену,
+// себестоимость и наличие по offer.id и не доверяет тому, что пришло со страницы.
+const BOT_USERNAME = "usdirect_bot";
+const CATALOG_ID = "kicks";
 const FX_URL = "../fx.json";
 
 const dataNode = document.getElementById("product-data");
@@ -21,8 +23,7 @@ const el = {
   selectionPrice: document.getElementById("selection-price"),
   selectionPriceRub: document.getElementById("selection-price-rub"),
   fxNote: document.getElementById("fx-note"),
-  ctaTelegram: document.getElementById("cta-telegram"),
-  ctaWhatsapp: document.getElementById("cta-whatsapp"),
+  ctaOrder: document.getElementById("cta-order"),
 };
 
 function formatPrice(value, currency = "USD") {
@@ -66,41 +67,15 @@ function describeRate() {
   return `по курсу ЦБ ${formatRate(state.fx.rate)} ₽/$${suffix}`;
 }
 
-function getCurrentPageUrl() {
-  return window.location.href;
-}
-
-function buildInquiryText() {
-  if (!state.selected) {
-    return `Здравствуйте! Интересует модель ${product.name}.`;
-  }
-
-  const displaySize = convertSize(state.selected.size, state.unit);
-  const price = formatPrice(state.selected.price, state.selected.currency);
-
-  const lines = [
-    "Здравствуйте! Хочу заказать:",
-    `${product.name}`,
-    `Размер: ${displaySize} (${state.unit})`,
-    `Цена: ${price}`,
-  ];
-
-  // Курс фиксируется в тексте заявки: к моменту ответа он уже может измениться.
-  const rub = rubPrice(state.selected);
-  if (rub !== null) {
-    lines.push(`Цена в рублях: ${formatRub(rub)} (${describeRate()})`);
-  }
-
-  lines.push(`Ссылка: ${getCurrentPageUrl()}`);
-  return lines.join("\n");
-}
-
+// Payload вида p_kicks_4821 — бот сам подтягивает товар, цену и наличие
+// из своего кэша по catalogId+offerId, ничего кроме id со страницы не передаётся.
 function updateContactLinks() {
-  const text = buildInquiryText();
-  const encoded = encodeURIComponent(text);
+  if (!state.selected) {
+    el.ctaOrder.href = `https://t.me/${BOT_USERNAME}`;
+    return;
+  }
 
-  el.ctaTelegram.href = `https://t.me/${TELEGRAM_USERNAME}?text=${encoded}`;
-  el.ctaWhatsapp.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encoded}`;
+  el.ctaOrder.href = `https://t.me/${BOT_USERNAME}?start=p_${CATALOG_ID}_${state.selected.id}`;
 }
 
 function updateRubView() {
@@ -157,11 +132,7 @@ function renderSizes() {
     btn.type = "button";
     btn.className = "size-btn";
 
-    if (
-      state.selected &&
-      state.selected.size === offer.size &&
-      state.selected.price === offer.price
-    ) {
+    if (state.selected && state.selected.id === offer.id) {
       btn.classList.add("is-selected");
     }
 
