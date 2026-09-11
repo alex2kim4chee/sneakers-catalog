@@ -1,9 +1,9 @@
 {
   "base": "USD",
   "quote": "RUB",
-  "rate": 85.4594,
-  "rateDate": "2026-09-10",
+  "rate": 84.3508,
+  "rateDate": "2026-09-11",
   "source": "ЦБ РФ",
   "sourceHost": "cbr.ru",
-  "fetchedAt": "2026-09-10T10:37:21.645698+00:00"
+  "fetchedAt": "2026-09-11T10:36:58.413683+00:00"
 }
